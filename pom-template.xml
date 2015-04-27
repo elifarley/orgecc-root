@@ -6,12 +6,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.ecc.root</groupId>
+    <groupId>com.orgecc</groupId>
     <artifactId>orgecc-root</artifactId>
     <version>default-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.ecc</groupId>
   <artifactId><$NAME>-root</artifactId>
   <version>default-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -87,7 +86,7 @@
     <dependencies>
 
       <dependency>
-        <groupId>org.ecc.root</groupId>
+        <groupId>com.orgecc</groupId>
         <artifactId>orgecc-dep-pom</artifactId>
         <version>default-SNAPSHOT</version>
         <type>pom</type>
@@ -106,7 +105,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.ecc.root</groupId>
+      <groupId>com.orgecc</groupId>
       <artifactId>orgecc-root-info</artifactId>
     </dependency>
 
