@@ -267,8 +267,7 @@
       <activation>
         <file><exists>src/main/config/java-version-4</exists></file>
         <property>
-          <name>java-version</name>
-          <value>4</value>
+          <name>java-version</name><value>4</value>
         </property>
       </activation>
 
@@ -298,8 +297,7 @@
       <activation>
         <file><exists>src/main/config/java-version-5</exists></file>
         <property>
-          <name>java-version</name>
-          <value>5</value>
+          <name>java-version</name><value>5</value>
         </property>
       </activation>
 
@@ -329,8 +327,7 @@
       <activation>
         <file><exists>src/main/config/java-version-6</exists></file>
         <property>
-          <name>java-version</name>
-          <value>6</value>
+          <name>java-version</name><value>6</value>
         </property>
       </activation>
 
@@ -360,8 +357,7 @@
       <activation>
         <file><exists>src/main/config/java-version-7</exists></file>
         <property>
-          <name>java-version</name>
-          <value>7</value>
+          <name>java-version</name><value>7</value>
         </property>
       </activation>
 
@@ -391,8 +387,7 @@
       <activation>
         <file><exists>src/main/config/java-version-8</exists></file>
         <property>
-          <name>java-version</name>
-          <value>8</value>
+          <name>java-version</name><value>8</value>
         </property>
       </activation>
 
@@ -595,7 +590,7 @@
   <organization>
     <name>Orgecc</name>
     <!-- ${project.artifactId}/ will be automatically appended to this url -->
-    <url>http://www.orgecc.com</url>
+    <url>http://code.orgecc.com</url>
   </organization>
   <developers>
     <developer>
@@ -642,7 +637,7 @@
 
   <ciManagement>
     <system>Jenkins</system>
-    <url>http://com.orgecc/jenkins/</url>
+    <url>http://jenkins.orgecc.com/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
@@ -1131,7 +1126,7 @@
                <goal>run</goal>
             </goals>
             <configuration>
-              <tasks if="maven.test.skip">
+              <target if="maven.test.skip">
                 <echo>Validation phase; Skipping tests. JAVA_HOME=${java.home}</echo>
                 <!--
 
@@ -1149,7 +1144,7 @@
                 </ant>
                 -->
 
-              </tasks>
+              </target>
             </configuration>
           </execution>
 
@@ -1161,7 +1156,7 @@
             </goals>
             <configuration>
 
-              <tasks unless="maven.test.skip">
+              <target unless="maven.test.skip">
                 <!--
                 <property name="compile_classpath" refid="maven.compile.classpath"/>
                 <echo message="compile classpath: ${compile_classpath}"/>
@@ -1175,7 +1170,7 @@
                 </ant>
                 -->
 
-              </tasks>
+              </target>
 
               <!-- <sourceRoot/> adds a single folder to the list of folders that get compiled with the program source code (compile). -->
               <sourceRoot>
