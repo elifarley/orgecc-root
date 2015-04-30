@@ -45,6 +45,35 @@
   <profiles>
 
     <profile>
+      <id>OSSRH-15288</id>
+
+      <activation>
+        <file><exists>src/main/config/deploy-to-ossrh</exists></file>
+        <property>
+          <name>deploy-to</name><value>ossrh</value>
+        </property>
+      </activation>
+
+      <distributionManagement>
+
+        <repository>
+          <id>OSSRH-15288</id>
+          <name>Sonatype Staging Repository</name>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+          <uniqueVersion>false</uniqueVersion>
+        </repository>
+
+        <snapshotRepository>
+          <id>OSSRH-15288-snapshots</id>
+          <name>Sonatype snapshots</name>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+      </distributionManagement>
+
+    </profile>
+
+    <profile>
       <id>scala.enable</id>
       <activation>
         <property><name>scala.enable</name></property>
