@@ -17,37 +17,95 @@
   <name>Orgecc Root Info</name>
   <inceptionYear>2013</inceptionYear>
 
-  <build>
+  <profiles>
 
-    <plugins>
+    <profile>
+      <id>WERCKER</id>
 
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>hgchangeset</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <activation>
+        <property><name>env.WERCKER</name></property>
+      </activation>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifestEntries>
-              <orgecc-root-hg-changeset>${changeSet}</orgecc-root-hg-changeset>
-              <orgecc-root-hg-changeset-date>${changeSetDate}</orgecc-root-hg-changeset-date>
-              <orgecc-root-version-message>${project.version}\n${changeSet}\n(${changeSetDate})</orgecc-root-version-message>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+      <build>
+
+        <plugins>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>buildnumber-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>create-timestamp</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <timestampFormat>yyyy-MM-dd HH:mm:ss</timestampFormat>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <wercker-build-url>${env.WERCKER_BUILD_URL}</wercker-build-url>
+                  <wercker-build-date>${timestamp}</wercker-build-date>
+                  <orgecc-root-version-message>${project.version}\n${env.WERCKER_BUILD_ID}\n(${timestamp})</orgecc-root-version-message>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+
+    <profile>
+      <id>NO-WERCKER</id>
+
+      <activation>
+        <property><name>!env.WERCKER</name></property>
+      </activation>
+
+      <build>
+
+        <plugins>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>buildnumber-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>hgchangeset</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <orgecc-root-hg-changeset>${changeSet}</orgecc-root-hg-changeset>
+                  <orgecc-root-hg-changeset-date>${changeSetDate}</orgecc-root-hg-changeset-date>
+                  <orgecc-root-version-message>${project.version}\n${changeSet}\n(${changeSetDate})</orgecc-root-version-message>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+
+    </profile>
+
+  </profiles>
 
 </project>
