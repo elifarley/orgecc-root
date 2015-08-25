@@ -551,7 +551,7 @@
                 can be defined and then referenced via a URL, File,
                 or build classpath resource reference.
                 -->
-                <configLocation>src/main/config/checkstyle-main.xml</configLocation>
+                <configLocation>${project.basedir}/src/main/config/checkstyle-main.xml</configLocation>
               </configuration>
             </plugin>
           </plugins>
@@ -569,7 +569,7 @@
               can be defined and then referenced via a URL, File,
               or build classpath resource reference.
               -->
-              <configLocation>src/main/config/checkstyle-main.xml</configLocation>
+              <configLocation>${project.basedir}/src/main/config/checkstyle-main.xml</configLocation>
             </configuration>
           </plugin>
         </plugins>
@@ -592,7 +592,7 @@
               <artifactId>maven-checkstyle-plugin</artifactId>
               <version>${checkstyle.version}</version>
               <configuration>
-                <suppressionsLocation>src/main/config/checkstyle-exclude.xml</suppressionsLocation>
+                <suppressionsLocation>${project.basedir}/src/main/config/checkstyle-exclude.xml</suppressionsLocation>
               </configuration>
             </plugin>
           </plugins>
@@ -606,7 +606,7 @@
             <artifactId>maven-checkstyle-plugin</artifactId>
             <version>${checkstyle.version}</version>
             <configuration>
-              <suppressionsLocation>src/main/config/checkstyle-exclude.xml</suppressionsLocation>
+              <suppressionsLocation>${project.basedir}/src/main/config/checkstyle-exclude.xml</suppressionsLocation>
             </configuration>
           </plugin>
         </plugins>

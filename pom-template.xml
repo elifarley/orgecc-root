@@ -72,6 +72,16 @@
     <plugins>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/jaxb/*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId><$GRUPO-DO-PLUGIN></groupId>
         <artifactId><$ARTEFATO-DO-PLUGIN></artifactId>
         <configuration>
