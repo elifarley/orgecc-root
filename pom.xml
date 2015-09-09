@@ -176,6 +176,7 @@
             <artifactId>maven-enforcer-plugin</artifactId>
             <version>1.4.1</version>
             <executions>
+
               <execution>
                 <id>enforce-no-repositories</id>
                 <goals>
@@ -295,6 +296,9 @@
     <!--
     Using ${project.basedir} doesn't work:
         <file><exists>${project.basedir}/src/main/config/java-version-4</exists></file>
+    In Maven 3, we must use ${basedir} to point at files within the project:
+        <file><exists>${basedir}/src/main/config/java-version-4</exists></file>
+    (see http://blog.sonatype.com/2010/12/whats-in-maven-3-0-for-users/)
     -->
     <profile>
       <id>java-1.4</id>
@@ -304,6 +308,19 @@
         <property>
           <name>java-version</name><value>4</value>
         </property>
+      </activation>
+
+      <properties>
+        <java-target-version>1.4</java-target-version>
+        <java-home>${java-1.4-home}</java-home>
+      </properties>
+
+    </profile>
+    <profile>
+      <id>java-1.4-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/java-version-4</exists></file>
       </activation>
 
       <properties>
@@ -343,6 +360,19 @@
 
     </profile>
     <profile>
+      <id>java-1.5-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/java-version-5</exists></file>
+      </activation>
+
+      <properties>
+        <java-target-version>1.5</java-target-version>
+        <java-home>${java-1.5-home}</java-home>
+      </properties>
+
+    </profile>
+    <profile>
       <id>java-1.5-parent</id>
 
       <activation>
@@ -364,6 +394,19 @@
         <property>
           <name>java-version</name><value>6</value>
         </property>
+      </activation>
+
+      <properties>
+        <java-target-version>1.6</java-target-version>
+        <java-home>${java-1.6-home}</java-home>
+      </properties>
+
+    </profile>
+    <profile>
+      <id>java-1.6-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/java-version-6</exists></file>
       </activation>
 
       <properties>
@@ -403,6 +446,19 @@
 
     </profile>
     <profile>
+      <id>java-1.7-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/java-version-7</exists></file>
+      </activation>
+
+      <properties>
+        <java-target-version>1.7</java-target-version>
+        <java-home>${java-1.7-home}</java-home>
+      </properties>
+
+    </profile>
+    <profile>
       <id>java-1.7-parent</id>
 
       <activation>
@@ -424,6 +480,19 @@
         <property>
           <name>java-version</name><value>8</value>
         </property>
+      </activation>
+
+      <properties>
+        <java-target-version>1.8</java-target-version>
+        <java-home>${java-1.8-home}</java-home>
+      </properties>
+
+    </profile>
+    <profile>
+      <id>java-1.8-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/java-version-8</exists></file>
       </activation>
 
       <properties>
@@ -1161,8 +1230,10 @@
                <goal>run</goal>
             </goals>
             <configuration>
-              <target if="maven.test.skip">
-                <echo>Validation phase; Skipping tests. JAVA_HOME=${java.home}</echo>
+              <target>
+                <echo>-- Validation phase --</echo>
+                <echo>maven.test.skip: ${maven.test.skip}</echo>
+                <echo>java-home: ${java-home}</echo>
                 <!--
 
                 <property name="compile_classpath" refid="maven.compile.classpath"/>
