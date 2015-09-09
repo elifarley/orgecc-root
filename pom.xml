@@ -1230,7 +1230,7 @@
                <goal>run</goal>
             </goals>
             <configuration>
-              <target>
+              <tasks>
                 <echo>-- Validation phase --</echo>
                 <echo>maven.test.skip: ${maven.test.skip}</echo>
                 <echo>java-home: ${java-home}</echo>
@@ -1250,7 +1250,7 @@
                 </ant>
                 -->
 
-              </target>
+              </tasks>
             </configuration>
           </execution>
 
