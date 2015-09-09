@@ -9,7 +9,8 @@
     <guava.version>18.0</guava.version>
     <slf4j.version>1.5.8</slf4j.version>
     <logback.version>0.9.9</logback.version>
-    <log4j.version>1.2.9</log4j.version>
+    <log4j.version>1.2.17</log4j.version>
+    <log4j2.version>2.3</log4j2.version>
   </properties>
 
   <parent>
@@ -403,11 +404,43 @@
 
       <!-- Logging -->
 
+
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-web</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-nosql</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-iostreams</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
       <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>${log4j.version}</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
         <optional>true</optional>
       </dependency>
 
@@ -470,7 +503,7 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>${slf4j.version}</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
       </dependency>
 
       <!-- SLF4J binding to log4j (send log messages to log4j) -->
@@ -478,7 +511,15 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4j.version}</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- SLF4J binding to log4j 2.x (send log messages to log4j 2) -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>${log4j2.version}</version>
+        <scope>runtime</scope>
       </dependency>
 
       <!-- SLF4J binding to Logback (native implementation) -->
@@ -486,13 +527,13 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-core</artifactId>
         <version>${logback.version}</version>
-        <scope>provided</scope>
+        <scope>runtime</scope>
       </dependency>
 
       <!-- END: SLF4J bindings (implementations). Put ONLY ONE of them in the classpath. -->
@@ -658,6 +699,9 @@
         <groupId>org.apache.poi</groupId>
         <artifactId>poi</artifactId>
         <version>3.0.2-FINAL</version>
+        <exclusions>
+          <exclusion><groupId>log4j</groupId><artifactId>log4j</artifactId></exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
