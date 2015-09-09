@@ -174,7 +174,7 @@
             <!-- Enabling 'maven-enforcer-plugin' causes mvn eclipse:eclipse to fail with an NPE, so let's enable it only inside Jenkins -->
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-enforcer-plugin</artifactId>
-            <version>1.3.1</version>
+            <version>1.4.1</version>
             <executions>
               <execution>
                 <id>enforce-no-repositories</id>
@@ -719,7 +719,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
+          <version>3.3</version>
 
             <!--
             See http://maven.apache.org/plugins/maven-compiler-plugin/examples/compile-using-different-jdk.html
