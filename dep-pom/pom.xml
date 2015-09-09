@@ -11,6 +11,7 @@
     <logback.version>0.9.9</logback.version>
     <log4j.version>1.2.17</log4j.version>
     <log4j2.version>2.3</log4j2.version>
+    <juddi.version>3.0.3</juddi.version>
   </properties>
 
   <parent>
@@ -633,6 +634,60 @@
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>fluent-hc</artifactId>
         <version>4.3.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.juddi</groupId>
+        <artifactId>juddi-client</artifactId>
+        <version>${juddi.version}</version>
+        <exclusions>
+          <exclusion><groupId>log4j</groupId><artifactId>log4j</artifactId></exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.juddi</groupId>
+        <artifactId>uddi-ws</artifactId>
+        <version>${juddi.version}</version>
+        <exclusions>
+          <exclusion><groupId>log4j</groupId><artifactId>log4j</artifactId></exclusion>
+          <exclusion><groupId>com.sun.xml.stream</groupId><artifactId>sjsxp</artifactId></exclusion>
+          <exclusion><groupId>com.sun.xml.stream</groupId><artifactId>stax-api</artifactId></exclusion>
+          <exclusion><groupId>com.sun.xml.ws</groupId><artifactId>jaxws-rt</artifactId></exclusion>
+          <exclusion><groupId>javax.xml.ws</groupId><artifactId>jaxws-api</artifactId></exclusion>
+          <exclusion><groupId>com.sun.xml.messaging.saaj</groupId><artifactId>saaj-impl</artifactId></exclusion>
+          <exclusion><groupId>javax.xml.soap</groupId><artifactId>saaj-api</artifactId></exclusion>
+          <exclusion><groupId>com.sun.xml.stream.buffer</groupId><artifactId>streambuffer</artifactId></exclusion>
+          <exclusion><groupId>com.sun.org.apache.xml.internal</groupId><artifactId>resolver</artifactId></exclusion>
+          <exclusion><groupId>org.jvnet</groupId><artifactId>mimepull</artifactId></exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.juddi</groupId>
+          <artifactId>juddi-core</artifactId>
+          <version>${juddi.version}</version>
+          <exclusions>
+            <exclusion><groupId>log4j</groupId><artifactId>log4j</artifactId></exclusion>
+            <exclusion><groupId>jboss</groupId><artifactId>javassist</artifactId></exclusion>
+            <exclusion><groupId>javax.persistence</groupId><artifactId>persistence-api</artifactId></exclusion>
+            <exclusion><groupId>cglib</groupId><artifactId>cglib-nodep</artifactId></exclusion>
+            <exclusion><groupId>org.hibernate</groupId><artifactId>hibernate</artifactId></exclusion>
+            <exclusion><groupId>org.hibernate</groupId><artifactId>hibernate-entitymanager</artifactId></exclusion>
+          </exclusions>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.ws.scout</groupId>
+          <artifactId>scout</artifactId>
+          <version>1.2.2</version>
+          <exclusions>
+            <exclusion><groupId>org.apache.geronimo.specs</groupId><artifactId>geronimo-activation_1.1_spec</artifactId></exclusion>
+            <exclusion><groupId>org.apache.geronimo.specs</groupId><artifactId>geronimo-jaxb_2.1_spec</artifactId></exclusion>
+            <exclusion><groupId>org.apache.geronimo.specs</groupId><artifactId>geronimo-jaxr_1.0_spec</artifactId></exclusion>
+            <exclusion><groupId>org.apache.geronimo.specs</groupId><artifactId>geronimo-saaj_1.3_spec</artifactId></exclusion>
+            <exclusion><groupId>org.apache.geronimo.specs</groupId><artifactId>geronimo-stax-api_1.0_spec</artifactId>
+            </exclusion>
+          </exclusions>
       </dependency>
 
       <dependency>
