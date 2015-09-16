@@ -18,8 +18,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format> -->
-    <java-target-version>1.8</java-target-version>
-    <java-compiler-version>${java-target-version}</java-compiler-version>
+    <java-target-version>${java-compiler-version}</java-target-version>
+    <java-compiler-version>Please create file ${project.basedir}/src/main/config/java-version-N (N in 4,5,6, etc)</java-compiler-version>
     <java-compiler-path>${java-home}/bin/javac</java-compiler-path>
     <jvm-for-tests>${java-home}/bin/java</jvm-for-tests>
 
@@ -311,7 +311,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.4</java-target-version>
+        <java-compiler-version>1.4</java-compiler-version>
         <java-home>${java-1.4-home}</java-home>
       </properties>
 
@@ -324,7 +324,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.4</java-target-version>
+        <java-compiler-version>1.4</java-compiler-version>
         <java-home>${java-1.4-home}</java-home>
       </properties>
 
@@ -337,7 +337,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.4</java-target-version>
+        <java-compiler-version>1.4</java-compiler-version>
         <java-home>${java-1.4-home}</java-home>
       </properties>
 
@@ -354,7 +354,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.5</java-target-version>
+        <java-compiler-version>1.5</java-compiler-version>
         <java-home>${java-1.5-home}</java-home>
       </properties>
 
@@ -367,7 +367,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.5</java-target-version>
+        <java-compiler-version>1.5</java-compiler-version>
         <java-home>${java-1.5-home}</java-home>
       </properties>
 
@@ -380,7 +380,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.5</java-target-version>
+        <java-compiler-version>1.5</java-compiler-version>
         <java-home>${java-1.5-home}</java-home>
       </properties>
 
@@ -397,7 +397,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.6</java-target-version>
+        <java-compiler-version>1.6</java-compiler-version>
         <java-home>${java-1.6-home}</java-home>
       </properties>
 
@@ -410,7 +410,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.6</java-target-version>
+        <java-compiler-version>1.6</java-compiler-version>
         <java-home>${java-1.6-home}</java-home>
       </properties>
 
@@ -423,7 +423,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.6</java-target-version>
+        <java-compiler-version>1.6</java-compiler-version>
         <java-home>${java-1.6-home}</java-home>
       </properties>
 
@@ -440,7 +440,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.7</java-target-version>
+        <java-compiler-version>1.7</java-compiler-version>
         <java-home>${java-1.7-home}</java-home>
       </properties>
 
@@ -453,7 +453,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.7</java-target-version>
+        <java-compiler-version>1.7</java-compiler-version>
         <java-home>${java-1.7-home}</java-home>
       </properties>
 
@@ -466,7 +466,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.7</java-target-version>
+        <java-compiler-version>1.7</java-compiler-version>
         <java-home>${java-1.7-home}</java-home>
       </properties>
 
@@ -483,7 +483,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.8</java-target-version>
+        <java-compiler-version>1.8</java-compiler-version>
         <java-home>${java-1.8-home}</java-home>
       </properties>
 
@@ -496,7 +496,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.8</java-target-version>
+        <java-compiler-version>1.8</java-compiler-version>
         <java-home>${java-1.8-home}</java-home>
       </properties>
 
@@ -509,7 +509,7 @@
       </activation>
 
       <properties>
-        <java-target-version>1.8</java-target-version>
+        <java-compiler-version>1.8</java-compiler-version>
         <java-home>${java-1.8-home}</java-home>
       </properties>
 
@@ -1234,6 +1234,8 @@
                 <echo>-- Validation phase --</echo>
                 <echo>maven.test.skip: ${maven.test.skip}</echo>
                 <echo>java-home: ${java-home}</echo>
+                <echo>java-compiler-version: ${java-compiler-version}</echo>
+                <echo>java-target-version: ${java-target-version}</echo>
                 <!--
 
                 <property name="compile_classpath" refid="maven.compile.classpath"/>
