@@ -51,10 +51,39 @@
   <profiles>
 
     <profile>
-      <id>OSSRH-15288</id>
+      <id>OSSRH-15288-maven2</id>
 
       <activation>
         <file><exists>src/main/config/deploy-to-ossrh</exists></file>
+        <property>
+          <name>deploy-to</name><value>ossrh</value>
+        </property>
+      </activation>
+
+      <distributionManagement>
+
+        <repository>
+          <id>OSSRH-15288</id>
+          <name>Sonatype Staging Repository</name>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+          <uniqueVersion>false</uniqueVersion>
+        </repository>
+
+        <snapshotRepository>
+          <id>OSSRH-15288-snapshots</id>
+          <name>Sonatype snapshots</name>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+      </distributionManagement>
+
+    </profile>
+
+    <profile>
+      <id>OSSRH-15288-maven3</id>
+
+      <activation>
+        <file><exists>${basedir}/src/main/config/deploy-to-ossrh</exists></file>
         <property>
           <name>deploy-to</name><value>ossrh</value>
         </property>
@@ -150,7 +179,7 @@
                 <defaultDestination>${filesync-target}</defaultDestination>
                 <mappings>
                   <mapping>
-                    <sourceFolder>target-eclipse/classes</sourceFolder>
+                    <sourceFolder>${project.basedir}/target-eclipse/classes</sourceFolder>
                   </mapping>
                 </mappings>
               </configuration>
@@ -301,7 +330,7 @@
     (see http://blog.sonatype.com/2010/12/whats-in-maven-3-0-for-users/)
     -->
     <profile>
-      <id>java-1.4</id>
+      <id>java-1.4-maven2</id>
 
       <activation>
         <file><exists>src/main/config/java-version-4</exists></file>
@@ -344,7 +373,7 @@
     </profile>
 
     <profile>
-      <id>java-1.5</id>
+      <id>java-1.5-maven2</id>
 
       <activation>
         <file><exists>src/main/config/java-version-5</exists></file>
@@ -387,7 +416,7 @@
     </profile>
 
     <profile>
-      <id>java-1.6</id>
+      <id>java-1.6-maven2</id>
 
       <activation>
         <file><exists>src/main/config/java-version-6</exists></file>
@@ -430,7 +459,7 @@
     </profile>
 
     <profile>
-      <id>java-1.7</id>
+      <id>java-1.7-maven2</id>
 
       <activation>
         <file><exists>src/main/config/java-version-7</exists></file>
@@ -473,7 +502,7 @@
     </profile>
 
     <profile>
-      <id>java-1.8</id>
+      <id>java-1.8-maven2</id>
 
       <activation>
         <file><exists>src/main/config/java-version-8</exists></file>
@@ -519,7 +548,8 @@
       <id>findbugs-exclude</id>
 
       <activation>
-        <file><exists>src/main/config/findbugs-exclude.xml</exists></file>
+        <!-- Maven 2: <file><exists>src/; Maven 3: <file><exists>${basedir}/src/ -->
+        <file><exists>${basedir}/src/main/config/findbugs-exclude.xml</exists></file>
       </activation>
 
       <build>
@@ -530,7 +560,7 @@
               <artifactId>findbugs-maven-plugin</artifactId>
               <version>${findbugs.version}</version>
               <configuration>
-                <excludeFilterFile>src/main/config/findbugs-exclude.xml</excludeFilterFile>
+                <excludeFilterFile>${project.basedir}/src/main/config/findbugs-exclude.xml</excludeFilterFile>
               </configuration>
             </plugin>
           </plugins>
@@ -544,7 +574,7 @@
             <artifactId>findbugs-maven-plugin</artifactId>
             <version>${findbugs.version}</version>
             <configuration>
-              <excludeFilterFile>src/main/config/findbugs-exclude.xml</excludeFilterFile>
+              <excludeFilterFile>${project.basedir}/src/main/config/findbugs-exclude.xml</excludeFilterFile>
             </configuration>
           </plugin>
         </plugins>
@@ -556,7 +586,8 @@
       <id>pmd-main</id>
 
       <activation>
-        <file><exists>src/main/config/pmd-main.xml</exists></file>
+        <!-- Maven 2: <file><exists>src/; Maven 3: <file><exists>${basedir}/src/ -->
+        <file><exists>${basedir}/src/main/config/pmd-main.xml</exists></file>
       </activation>
 
       <build>
@@ -568,7 +599,7 @@
               <version>${pmd.version}</version>
               <configuration>
                 <rulesets>
-                  <ruleset>src/main/config/pmd-main.xml</ruleset>
+                  <ruleset>${project.basedir}/src/main/config/pmd-main.xml</ruleset>
                   <!--
                     <ruleset>/rulesets/basic.xml</ruleset>
                     <ruleset>/rulesets/controversial.xml</ruleset>
@@ -588,7 +619,7 @@
             <version>${pmd.version}</version>
             <configuration>
               <rulesets>
-                <ruleset>src/main/config/pmd-main.xml</ruleset>
+                <ruleset>${project.basedir}/src/main/config/pmd-main.xml</ruleset>
                 <!--
                   <ruleset>/rulesets/basic.xml</ruleset>
                   <ruleset>/rulesets/controversial.xml</ruleset>
@@ -605,7 +636,8 @@
       <id>checkstyle-main</id>
 
       <activation>
-        <file><exists>src/main/config/checkstyle-main.xml</exists></file>
+        <!-- Maven 2: <file><exists>src/; Maven 3: <file><exists>${basedir}/src/ -->
+        <file><exists>${basedir}/src/main/config/checkstyle-main.xml</exists></file>
       </activation>
 
       <build>
@@ -650,7 +682,8 @@
       <id>checkstyle-exclude</id>
 
       <activation>
-        <file><exists>src/main/config/checkstyle-exclude.xml</exists></file>
+        <!-- Maven 2: <file><exists>src/; Maven 3: <file><exists>${basedir}/src/ -->
+        <file><exists>${basedir}/src/main/config/checkstyle-exclude.xml</exists></file>
       </activation>
 
       <build>
@@ -762,19 +795,19 @@
 
     <!--
     <filters>
-      <filter>src/main/filters/filter.properties</filter>
+      <filter>${project.basedir}/src/main/filters/filter.properties</filter>
     </filters>
 
     <resources>
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>${project.basedir}/src/main/resources</directory>
         <filtering>true</filtering>
         <excludes>
           <exclude>**/*.jpg</exclude>
         </excludes>
       </resource>
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>${project.basedir}/src/main/resources</directory>
         <includes>
           <include>**/*.jpg</include>
         </includes>
@@ -850,7 +883,7 @@
           <version>2.9</version>
           <configuration>
             <workspace>..</workspace> <!-- See http://jira.codehaus.org/browse/MECLIPSE-726 -->
-            <outputDirectory>target-eclipse/classes</outputDirectory>
+            <outputDirectory>${project.basedir}/target-eclipse/classes</outputDirectory>
             <downloadSources>true</downloadSources>
             <downloadJavadocs>true</downloadJavadocs>
             <!--
@@ -985,7 +1018,7 @@
               <exclude>**/generated/*.java</exclude>
             </excludes>
             <excludeRoots>
-               <excludeRoot>target/.generated</excludeRoot>
+               <excludeRoot>${project.basedir}/target/.generated</excludeRoot>
             </excludeRoots>
 
             <targetJdk>${java-target-version}</targetJdk>
@@ -1483,7 +1516,7 @@
             <exclude>**/generated/*.java</exclude>
           </excludes>
           <excludeRoots>
-             <excludeRoot>target/.generated</excludeRoot>
+             <excludeRoot>${project.basedir}/target/.generated</excludeRoot>
           </excludeRoots>
 
           <targetJdk>${java-target-version}</targetJdk>
