@@ -914,6 +914,7 @@
             <!--<project>${project}</project>-->
             <excludes>
               <exclude>**/generated/*.java</exclude>
+              <exclude>**/jaxb/*</exclude>
             </excludes>
             <excludeRoots>
                <excludeRoot>target/.generated</excludeRoot>
